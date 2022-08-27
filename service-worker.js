@@ -1,3 +1,7 @@
+const notification = (title, body) => {
+  self.registration.showNotification(title, { body });
+};
+
 self.addEventListener(`push`, (event) => {
-  console.log(event.data.text());
+  notification(`サービスワーカーからのプッシュ通知`, `こんにちは、世界！`);
 });

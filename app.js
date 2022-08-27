@@ -1,18 +1,24 @@
+const serviceWorker = navigator.serviceWorker;
+
 const registerServiceWorker = async () => {
-  const serviceworker = navigator.serviceWorker;
-  if (!serviceworker) {
+  if (!serviceWorker) {
     console.error(`サービスワーカーが存在しません。`);
     return;
   }
 
-  await serviceworker
-    .register(`service-worker.js`, { scope: `index` })
-    .then(() => {
-      console.log(`サービスワーカーを登録しました。`);
-    });
+  try {
+    await serviceWorker.register(`service-worker.js`, { scope: `index` });
+  } catch (error) {
+    console.error(`サービスワーカーの登録に失敗しました。：${error}`);
+  }
+};
+
+// TODO.
+const requestNotification = async () => {
+  await window.Notification.requestPermission();
 };
 
 document.addEventListener(`DOMContentLoaded`, async () => {
-  console.log(`DOM を読込終わりました！`);
+  await requestNotification();
   await registerServiceWorker();
 });
