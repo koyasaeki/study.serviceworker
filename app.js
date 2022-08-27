@@ -5,7 +5,11 @@ const registerServiceWorker = async () => {
     return;
   }
 
-  await serviceworker.register(`service-worker.js`, { scope: `index` });
+  await serviceworker
+    .register(`service-worker.js`, { scope: `index` })
+    .then(() => {
+      console.log(`サービスワーカーを登録しました。`);
+    });
 };
 
 document.addEventListener(`DOMContentLoaded`, async () => {

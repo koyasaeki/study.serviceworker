@@ -1,1 +1,3 @@
-console.log(`サービスワーカーの登録に成功したよ！`);
+self.addEventListener(`push`, (event) => {
+  console.log(event.data.text());
+});
