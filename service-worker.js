@@ -1,5 +1,5 @@
 const notification = (title, body) => {
-  self.registration.showNotification(title, { body });
+  self.registration.showNotification(title, { body, tag: Math.random() });
 };
 
 self.addEventListener(`push`, (event) => {
