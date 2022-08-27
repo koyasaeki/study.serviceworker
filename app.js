@@ -1,11 +1,14 @@
 const registerServiceWorker = async () => {
   const serviceworker = navigator.serviceWorker;
   if (!serviceworker) {
-    throw Error(`サービスワーカーが存在しません。`);
+    console.error(`サービスワーカーが存在しません。`);
     return;
   }
 
-  serviceworker.register(`service-worker.js`, { scope: `/` });
+  await serviceworker.register(`service-worker.js`, { scope: `index` });
 };
 
-await registerServiceWorker();
+document.addEventListener(`DOMContentLoaded`, async () => {
+  console.log(`DOM を読込終わりました！`);
+  await registerServiceWorker();
+});
